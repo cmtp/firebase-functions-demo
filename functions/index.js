@@ -30,7 +30,7 @@ app.post("/books", (req, res) => {
       author: req.body.author,
     });
 
-    return res.json({
+    return res.status(201).json({
       ok: true,
       id: bookCreated.id,
     });
@@ -47,7 +47,7 @@ app.get("/api/books", (req, res) => {
         ...doc.data(),
       });
     });
-    return res.json({
+    return res.status(200).json({
       ok: true,
       books,
     });
@@ -65,7 +65,7 @@ app.get("/api/books/:id", (req, res) => {
       });
     }
     let book = { id: req.params.id, ...doc.data() };
-    return res.json({
+    return res.status(200).json({
       ok: true,
       book,
     });
@@ -83,7 +83,7 @@ app.put("/api/books/:id", (req, res) => {
       author: req.body.author,
     });
 
-    return res.json({
+    return res.status(201).json({
       ok: true,
       book: bookModified,
     });
@@ -94,7 +94,7 @@ app.delete("/api/books/:id", (req, res) => {
   (async () => {
     await db.collection("books").doc(req.params.id).delete();
 
-    return res.json({
+    return res.status(204).json({
       ok: true,
     });
   })();
