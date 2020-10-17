@@ -83,7 +83,7 @@ app.put("/api/books/:id", (req, res) => {
       author: req.body.author,
     });
 
-    return res.status(201).json({
+    return res.status(200).json({
       ok: true,
       book: bookModified,
     });
